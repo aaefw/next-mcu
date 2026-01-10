@@ -9,12 +9,12 @@
 
 @font-face {
     font-family: 'Bebas Neue';
-    src: url('./fonts/BebasNeue.ttf');
+    src: url('./fonts/BebasNeue.woff2');
 }
 
 @font-face {
     font-family: 'Inter Tight';
-    src: url('./fonts/InterTight.ttf');
+    src: url('./fonts/InterTight.woff2');
 }
 
 @view-transition{
