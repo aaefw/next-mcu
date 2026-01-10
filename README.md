@@ -1,5 +1,5 @@
 <h3 align="center"><b>NEXT MCU</b></h3>
-<p align="center"><a href="https://mcu.esflowers.icu/"><code>mcu.esflowers.icu</code></a></p>
+<p align="center"><a href="https://next-mcu.vercel.app/"><code>next-mcu.vercel.app</code></a></p>
 
 ![Next MCU](./img/image.png)
 
