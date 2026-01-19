@@ -5,9 +5,9 @@
 
 ### Stack
 
-- **[PHP](https://www.php.net/ "php.net")** / General-purpose scripting language.
-- **[MCU-Countdown](https://github.com/DiljotSG/MCU-Countdown)** / API for answering the question *When is the next MCU film?*
-- **[Iconoir](https://iconoir.com/ "iconoir.com")** / High-quality selection of free icons.
+- **[PHP](https://php.net/ "php.net")** / A popular general-purpose scripting language.
+- **[MCU-Countdown](https://github.com/DiljotSG/MCU-Countdown)** / An API for answering the question *When is the next MCU film?*
+- **[Iconoir](https://iconoir.com/ "iconoir.com")** / A high-quality selection of free icons.
 - **[Lucide](https://lucide.dev/ "lucide.dev")** / Beautiful & consistent icons.
 
 ### Fonts
