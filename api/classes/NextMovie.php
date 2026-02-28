@@ -31,24 +31,40 @@
 
         public static function fetch_and_create_movie(string $api_url, ?string $date = null) : NextMovie{
             $url = $date ? "$api_url?date=$date" : $api_url;
-            $result = file_get_contents($url);
-            $data = json_decode($result, true);
+            $ch = curl_init($url);
 
-            if (!$data || !isset($data["title"])) {
-                return new self(
-                    -1,
-                    "Unknown",
-                    [],
-                    "Unknown",
-                    "./img/unknown.jpg",
-                    "No overview available.",
-                    "Unknown"
-                );
+            curl_setopt_array($ch, [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HTTPHEADER => [
+                    'User-Agent: NextMovieApp/1.0',
+                    'Accept: application/json'
+                ],
+                CURLOPT_TIMEOUT => 10,
+            ]);
+
+            $result = curl_exec($ch);
+
+            if ($result === false) {
+                curl_close($ch);
+                return self::createFallback();
             }
 
-            $formattedDate = isset($data['release_date'])
-                ? (new DateTime($data['release_date']))->format('m/d/Y')
-                : 'Unknown';
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($httpCode !== 200) {
+                return self::createFallback();
+            }
+            
+            $data = json_decode($result, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return self::createFallback();
+            }
+
+            if (!$data || !isset($data["title"])) {
+                return self::createFallback();
+            }
 
             return new self(
                 $data["days_until"] ?? 0,
@@ -58,6 +74,18 @@
                 $data["poster_url"] ?? "",
                 $data["overview"] ?? "No overview available",
                 $data["type"] ?? "Unknown"
+            );
+        }
+
+        private static function createFallback(): self {
+            return new self(
+                -1,
+                "Unknown",
+                [],
+                "Unknown",
+                "./img/unknown.jpg",
+                "No overview available.",
+                "Unknown"
             );
         }
 
