@@ -1,11 +1,11 @@
-const $ = e => document.querySelector(e)
-const img = $('#poster')
-const gradient = $('.gradient')
-const btnPrev = $('#previous')
-const btnShare = $('#share')
+const $ = (e) => document.querySelector(e)
+const img = $("#poster")
+const gradient = $(".gradient")
+const btnPrev = $("#previous")
+const btnShare = $("#share")
 const originalShareText = btnShare.innerHTML
-const canvas = $('#canvas')
-const ctx = canvas.getContext('2d')
+const canvas = $("#canvas")
+const ctx = canvas.getContext("2d")
 
 img.onload = () => {
     canvas.width = img.width
@@ -37,7 +37,7 @@ function getDominantColor(data, width, height) {
     for (let key in colorMap) {
         if (colorMap[key] > maxCount) {
             maxCount = colorMap[key]
-            const [r, g, b] = key.split(',').map(Number)
+            const [r, g, b] = key.split(",").map(Number)
             dominantColor = { r, g, b }
         }
     }
@@ -46,21 +46,21 @@ function getDominantColor(data, width, height) {
 }
 
 if (btnPrev) {
-    btnPrev.addEventListener('click', () => {
+    btnPrev.addEventListener("click", () => {
         history.back()
     })
 }
 
-btnShare.addEventListener('click', async () => {
+btnShare.addEventListener("click", async () => {
     try {
         await navigator.clipboard.writeText(window.location.href)
-        btnShare.textContent = 'Link Copied!'
+        btnShare.textContent = "Link Copied!"
         setTimeout(() => {
             btnShare.innerHTML = originalShareText
         }, 2000)
     } catch (error) {
-        console.error('Failed to copy: ', error)
-        btnShare.textContent = 'Error Copying'
+        console.error("Failed to copy: ", error)
+        btnShare.textContent = "Error Copying"
         setTimeout(() => {
             btnShare.innerHTML = originalShareText
         }, 2000)
