@@ -10,11 +10,13 @@
 @font-face {
     font-family: "Bebas Neue";
     src: url("./fonts/BebasNeue.woff2");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Inter Tight";
     src: url("./fonts/InterTight.woff2");
+    font-display: swap;
 }
 
 @view-transition {
@@ -40,7 +42,6 @@ body {
     padding: 3rem;
     color: var(--secondary);
     background: var(--white);
-    font-display: swap;
 }
 
 ::selection {
@@ -67,6 +68,7 @@ h1 {
 h2 {
     font-size: 1.5rem;
     font-family: var(--font-display);
+    font-feature-settings: "pnum";
     text-transform: uppercase;
 }
 
